@@ -7,6 +7,7 @@ import org.apache.poi.util.IOUtils;
 import org.docx4j.dml.wordprocessingDrawing.Inline;
 import org.docx4j.jaxb.Context;
 import org.docx4j.model.structure.PageDimensions;
+import org.docx4j.model.structure.PageSizePaper;
 import org.docx4j.model.table.TblFactory;
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 import org.docx4j.openpackaging.parts.WordprocessingML.BinaryPartAbstractImage;
@@ -62,13 +63,11 @@ public class BCPrint {
 
             org.docx4j.wml.Body body = factory .createBody();
             setPageMargins(body);
-            org.docx4j.wml.Document wmlDocumentEl = factory .createDocument();
+            //setPageSize(body);
+            org.docx4j.wml.Document wmlDocumentEl = factory.createDocument();
             wmlDocumentEl.setBody(body);
             wordDocumentPart.setJaxbElement(wmlDocumentEl);
             wordMLPackage.addTargetPart(wordDocumentPart);
-
-
-            //Tbl table = factory.createTbl();
 
 
             //int writableWidthTwips = wordMLPackage.getDocumentModel().getSections().get(0).getPageDimensions().getWritableWidthTwips();
@@ -79,21 +78,17 @@ public class BCPrint {
             int cellNum = 0;
             for (int i = 0; i<rows.size(); i++){
                 Tr row = (Tr) rows.get(i);
-                setRowHeight(row,1090);
+                setRowHeight(row,1161);
                 List cells = row.getContent();
                 for (int j = 0; j<cells.size(); j++){
                     Tc tc = (Tc) cells.get(j);
                     addCellValue(tc, barcodes.get(cellNum));
                     cellNum++;
                 }
-
             }
 
-            addBorders(table);
-
+            //addBorders(table);
             wordDocumentPart.getContent().add(0, table);
-
-            //wordMLPackage.save(new java.io.File("helloworld3.docx"));
 
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             wordMLPackage.save(bos);
@@ -112,16 +107,31 @@ public class BCPrint {
 
     private void setPageMargins(org.docx4j.wml.Body body){
         PageDimensions page = new PageDimensions();
+        page.setPgSize(PageSizePaper.A4, false);
+
         SectPr.PgMar pgMar = page.getPgMar();
-        pgMar.setTop(BigInteger.valueOf(280));
-        pgMar.setBottom(BigInteger.valueOf(10));
-        pgMar.setLeft(BigInteger.valueOf(280));
+        pgMar.setTop(BigInteger.valueOf(396));
+        pgMar.setBottom(BigInteger.valueOf(-10));
+        pgMar.setLeft(BigInteger.valueOf(226));
         pgMar.setRight(BigInteger.valueOf(280));
 
         SectPr sectPr = factory.createSectPr();
-        body.setSectPr(sectPr);
         sectPr.setPgMar(pgMar);
+        sectPr.setPgSz(page.getPgSz());
+        body.setSectPr(sectPr);
     }
+
+//    private void setPageSize(org.docx4j.wml.Body body){
+//        PageDimensions page = new PageDimensions();
+//        SectPr.PgSz pgSz = page.getPgSz();
+//        pgSz.setW(BigInteger.valueOf(11907));
+//        pgSz.setH(BigInteger.valueOf(16839));
+//
+//
+//        SectPr.PgSz sectPr = factory.createSectPrPgSz();
+//        sectPr.setPgSz(pgSz);
+//        body.setSectPr(sectPr);
+//    }
 
     private void addCellValue(Tc tc, String content) throws Exception {
 
