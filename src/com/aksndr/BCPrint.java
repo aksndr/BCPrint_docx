@@ -1,4 +1,4 @@
-package ru.aksndr;
+package com.aksndr;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.Barcode128;
@@ -39,39 +39,22 @@ public class BCPrint {
     private MainDocumentPart wordDocumentPart;
     private ObjectFactory factory;
 
-    public Map<String, Object> init(){
+    public Map<String, Object> getSheet(List<String> barcodes){
+
         try {
             wordMLPackage = new WordprocessingMLPackage();
             wordDocumentPart = new MainDocumentPart();
             factory = Context.getWmlObjectFactory();
 
-
-            return succeed();
-        } catch (Exception e) {
-            return failed(e.toString());
-        }
-    }
-
-//    public static void main(String[] args){
-//        createBarcodeDocument();
-//    }
-
-    public Map<String, Object> createBarcodeDocument(List<String> barcodes){
-
-        try {
-            //WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage.createPackage();
-
-            org.docx4j.wml.Body body = factory .createBody();
+                        org.docx4j.wml.Body body = factory .createBody();
             setPageMargins(body);
-            //setPageSize(body);
             org.docx4j.wml.Document wmlDocumentEl = factory.createDocument();
             wmlDocumentEl.setBody(body);
             wordDocumentPart.setJaxbElement(wmlDocumentEl);
             wordMLPackage.addTargetPart(wordDocumentPart);
 
 
-            //int writableWidthTwips = wordMLPackage.getDocumentModel().getSections().get(0).getPageDimensions().getWritableWidthTwips();
-            Tbl table = TblFactory.createTable(14, 3, 3900);
+            Tbl table = TblFactory.createTable(barcodes.size()/3, 3, 3900);
 
             List rows = table.getContent();
 
@@ -87,7 +70,6 @@ public class BCPrint {
                 }
             }
 
-            //addBorders(table);
             wordDocumentPart.getContent().add(0, table);
 
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -120,18 +102,6 @@ public class BCPrint {
         sectPr.setPgSz(page.getPgSz());
         body.setSectPr(sectPr);
     }
-
-//    private void setPageSize(org.docx4j.wml.Body body){
-//        PageDimensions page = new PageDimensions();
-//        SectPr.PgSz pgSz = page.getPgSz();
-//        pgSz.setW(BigInteger.valueOf(11907));
-//        pgSz.setH(BigInteger.valueOf(16839));
-//
-//
-//        SectPr.PgSz sectPr = factory.createSectPrPgSz();
-//        sectPr.setPgSz(pgSz);
-//        body.setSectPr(sectPr);
-//    }
 
     private void addCellValue(Tc tc, String content) throws Exception {
 
