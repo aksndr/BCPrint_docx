@@ -9,9 +9,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="docx4j-3.2.2" level="project" />
     <orderEntry type="library" name="JUnit" level="project" />
     <orderEntry type="library" name="slf4j-api-1.7.18" level="project" />
     <orderEntry type="library" name="itextpdf-5.5.8" level="project" />
+    <orderEntry type="library" name="docx4j" level="project" />
   </component>
 </module>

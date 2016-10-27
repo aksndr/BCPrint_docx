@@ -3,11 +3,17 @@
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/../../../javalibs/slf4j-1.7.18/slf4j-api-1.7.18.jar!/" />
       <root url="jar://$PROJECT_DIR$/../../../javalibs/slf4j-1.7.18/slf4j-simple-1.7.18.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../libs/java/slf4j-1.7.13/slf4j-api-1.7.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../libs/java/slf4j-1.7.13/slf4j-simple-1.7.13.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$PROJECT_DIR$/../../../javalibs/slf4j-1.7.18/slf4j-api-1.7.18-sources.jar!/" />
       <root url="jar://$PROJECT_DIR$/../../../javalibs/slf4j-1.7.18/slf4j-simple-1.7.18-sources.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../../libs/java/slf4j-1.7.13/slf4j-api/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../../libs/java/slf4j-1.7.13/slf4j-api/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../../../libs/java/slf4j-1.7.13/slf4j-simple/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../../libs/java/slf4j-1.7.13/slf4j-simple/src/test/java" />
     </SOURCES>
   </library>
 </component>

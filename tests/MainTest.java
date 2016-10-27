@@ -26,7 +26,7 @@ public class MainTest {
         Assert.assertNotNull(value);
         Assert.assertTrue(value.length > 0);
 
-        FileOutputStream fos = new FileOutputStream(String.format("D:\\temp\\bcprint_docx\\%s.docx",new Date().getTime()));
+        FileOutputStream fos = new FileOutputStream(String.format("D:\\temp\\bcprint\\%s.docx", new Date().getTime()));
         fos.write(value);
         fos.close();
     }
@@ -47,7 +47,7 @@ public class MainTest {
         Assert.assertNotNull(value);
         Assert.assertTrue(value.length > 0);
 
-        FileOutputStream fos = new FileOutputStream(String.format("D:\\temp\\bcprint_docx\\%s.docx",new Date().getTime()));
+        FileOutputStream fos = new FileOutputStream(String.format("D:\\temp\\bcprint\\%s.docx", new Date().getTime()));
         fos.write(value);
         fos.close();
     }

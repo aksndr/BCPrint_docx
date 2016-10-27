@@ -1,8 +1,12 @@
 package com.aksndr;
 
-import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.Barcode128;
-import com.itextpdf.text.pdf.BarcodeEAN;
+//import com.itextpdf.text.*;
+//import com.itextpdf.text.pdf.Barcode128;
+//import com.itextpdf.text.pdf.BarcodeEAN;
+
+import com.lowagie.text.*;
+import com.lowagie.text.pdf.Barcode128;
+import com.lowagie.text.pdf.BarcodeEAN;
 import org.apache.poi.util.IOUtils;
 import org.docx4j.dml.wordprocessingDrawing.Inline;
 import org.docx4j.jaxb.Context;
